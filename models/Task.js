@@ -6,15 +6,18 @@ const TaskSchema = new Schema(
     name: {
       type: String,
       required: true,
+      immutable: true,
     },
     priority: {
       type: String,
       enum: ["High", "Medium", "Low"],
       required: true,
+      immutable: true,
     },
     due_date: {
       type: Date,
       required: true,
+      immutable: true,
     },
     task_status: {
       type: String,

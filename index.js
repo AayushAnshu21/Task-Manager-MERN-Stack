@@ -13,14 +13,30 @@ mongoose.connect("mongodb://localhost/tasks", {
   useFindAndModify: false,
 });
 
+app.get('/tasks', async (req, res) => {
+  let tasks = await Task.find({}).sort("-updatedAt");
+  res.json(tasks)
+
+})
 
 app.post("/tasks", async (req, res) => {
   const { name, priority, due_date } = req.body;
   d = Date.parse(due_date);
-  console.log(name , priority,due_date,d)
+  console.log(name, priority, due_date, d);
   try {
     let newtask = new Task({ name, priority, due_date: d });
     let task = await newtask.save();
+    res.json(task);
+  } catch (err) {
+    res.status(500).send("server error", err.message);
+  }
+});
+
+app.patch("/task/:id", async (req, res) => {
+  try {
+    let updatetask = await Task.findById(req.params.id);
+    updatetask["task_status"] = req.body["task_status"];
+    let task = await updatetask.save();
     res.json(task);
   } catch (err) {
     res.status(500).send("server error", err.message);
