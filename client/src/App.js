@@ -38,6 +38,7 @@ const Routing = () => {
       <Route exact path="/" component={ListTask} />
       <Route exact path="/new" component={Task} />
       <Route exact path="/task/:id" component={UpdateTask} />
+      <Route component={() => <h1>Does not exist</h1>} />
     </Switch>
   );
 };

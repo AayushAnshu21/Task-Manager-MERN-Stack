@@ -35,11 +35,7 @@ function ListTask() {
               </Col>
             ))
           ) : (
-<<<<<<< HEAD
             <p>No Tasks to Show</p>
-=======
-            <p>No Task to show</p>
->>>>>>> 139fd45... update message
           )}
         </Row>
       </Container>
