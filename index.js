@@ -19,12 +19,10 @@ app.get('/tasks', async (req, res) => {
 
 })
 
-app.post("/tasks", async (req, res) => {
+app.post("/task", async (req, res) => {
   const { name, priority, due_date } = req.body;
-  d = Date.parse(due_date);
-  console.log(name, priority, due_date, d);
   try {
-    let newtask = new Task({ name, priority, due_date: d });
+    let newtask = new Task({ name, priority, due_date });
     let task = await newtask.save();
     res.json(task);
   } catch (err) {
